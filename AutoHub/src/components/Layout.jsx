@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react"
+import { Outlet } from "react-router-dom"
+import Header from "./CarsDetail"
 
-function Layout() {
-  return (
-    <div>Layout</div>
-  )
+
+export default function Layout() {
+    return (
+        <>
+            <Header/>
+            <Outlet />
+        </>
+    )
 }
-
-export default Layout

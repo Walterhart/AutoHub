@@ -2,11 +2,11 @@ import { createServer, Model } from "miragejs";
 
 createServer({
   models: {
-    cars: Model,
+    car: Model,
   },
 
   seeds(server) {
-    server.create("cars", {
+    server.create("car", {
         id: "1",
         price: 25000,
         description:
@@ -43,12 +43,12 @@ createServer({
     this.namespace = "api";
 
     this.get("/cars", (schema, request) => {
-      return schema.books.all();
+      return schema.car.all();
     });
 
     this.get("/cars/:id", (schema, request) => {
       const id = request.params.id;
-      return schema.books.find(id);
+      return schema.car.find(id);
     });
   },
 });
