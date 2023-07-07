@@ -112,16 +112,16 @@ header a:hover {
   transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+
+.car-brand.selected {
+  color: floralwhite;
+}
 .car-brand:hover {
   color: var(--primary);
 }
 
 .car-brand:focus {
   outline: none;
-}
-
-.car-brand.selected {
-  color: var(--primary);
 }
 
 .car-brand.Ford:hover, .car-brand.Ford.selected {
@@ -151,4 +151,54 @@ header a:hover {
 
 i[class*='car-brand-'] {
   padding: 7px 14px;
+}
+
+
+.car-detail-container {
+  padding: 27px;
+}
+
+.car-detail-container .back-button {
+  color: black;
+  text-decoration: none;
+}
+
+.car-detail-container .back-button span {
+  text-decoration: underline;
+}
+
+.car-detail {
+  display: flex;
+  flex-direction: column;
+  color: #161616;
+}
+
+.car-detail img {
+  border-radius: 5px;
+  margin-block: 47px;
+}
+
+.car-detail h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.car-detail > i {
+  align-self: flex-start;
+}
+
+.car-detail .car-price {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.car-detail .car-price span {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.car-detail .link-button {
+  background-color: var(--primary);
+  color: white;
+  font-size: 1.125rem;
 }
