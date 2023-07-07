@@ -34,7 +34,7 @@ header {
 }
 
 header .site-logo, header a{
-  color: #f0f5ff;;
+  color: #f0f5ff;
 }
 header .site-logo {
   margin-right: auto;
@@ -71,4 +71,84 @@ header a:hover {
   transform: translate(1px, 1px);
 }
 
-/* Cars page */
+
+/*cars page*/
+.car-list-container {
+  padding-inline: 23px
+}
+
+.car-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  gap: 34px;
+  margin-top: 57px;
+}
+
+.car-tile a {
+  color: #161616;
+  text-decoration: none;    
+}
+
+.car-tile img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.car-list-container button {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.car-brand {
+  height: 34px;
+  padding: 6px 26px;
+  font-style: normal;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--secondary);
+  color:  #f0f5ff;
+  transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.car-brand:hover {
+  color: var(--primary);
+}
+
+.car-brand:focus {
+  outline: none;
+}
+
+.car-brand.selected {
+  color: var(--primary);
+}
+
+.car-brand.Ford:hover, .car-brand.Ford.selected {
+  background-color: #54e167;
+}
+
+.car-brand.Toyota:hover, .car-brand.Toyota.selected {
+  background-color: #115E59;
+}
+
+.car-brand.telsa:hover, .car-brand.Tesla.selected {
+  background-color: #161616;
+}
+
+.car-brand.clear-filters {
+  margin-left: -20px;
+  height: 34px;
+  padding: 6px 26px;
+  font-style: normal;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  text-decoration: underline;
+  background-color: transparent;
+  color: #4D4D4D;
+}
+
+i[class*='car-brand-'] {
+  padding: 7px 14px;
+}
