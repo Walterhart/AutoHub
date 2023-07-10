@@ -4,7 +4,8 @@
 
 :root {
   --primary: #004ba0;
-  --secondary: #b5d8ff  ;
+  --secondary: #b5d8ff;
+  --white: #f0f5ff;
 }
 
 html,
@@ -25,6 +26,12 @@ body {
   scrollbar-width: none;
 }
 
+.site-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 header {
   height: 110px;
   display: flex;
@@ -34,7 +41,7 @@ header {
 }
 
 header .site-logo, header a{
-  color: #f0f5ff;
+  color: var(--white);
 }
 header .site-logo {
   margin-right: auto;
@@ -54,6 +61,20 @@ header a:hover {
   text-decoration: underline;
 }
 
+
+footer {
+  background-color: var(--primary);
+  color: var(--white);
+  height: 74px;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  font-weight: 500;
+}
+
+
 .link-button {
   display: inline-block;
   text-align: center;
@@ -72,7 +93,7 @@ header a:hover {
 }
 
 
-/*cars page*/
+/*Cars page*/
 .car-list-container {
   padding-inline: 23px
 }
@@ -108,7 +129,7 @@ header a:hover {
   border: none;
   border-radius: 5px;
   background-color: var(--secondary);
-  color:  #f0f5ff;
+  color:  var(--white);
   transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -199,7 +220,7 @@ i[class*='car-brand-'] {
 
 .car-detail .link-button {
   background-color: var(--primary);
-  color: white;
+  color: var(--white);
   font-size: 1.125rem;
 }
 
