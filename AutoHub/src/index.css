@@ -92,6 +92,11 @@ footer {
   transform: translate(1px, 1px);
 }
 
+header .active-link {
+  font-weight: bold;
+  text-decoration: underline;
+  color: var(--secondary);
+}
 
 /*Cars page*/
 .car-list-container {
@@ -224,7 +229,7 @@ i[class*='car-brand-'] {
   font-size: 1.125rem;
 }
 
-/* Host*/
+/* Host pages*/
 .host-nav {
   display: flex;
 }
@@ -236,8 +241,8 @@ i[class*='car-brand-'] {
   padding: 0.3125em 1.25em;
 }
 
-.host-nav a:hover {
-  color: #161616;
+.host-nav a:hover, .host-nav .active-link {
+  color: var(--primary);
   text-decoration: underline;
   font-weight: 600;
 }
