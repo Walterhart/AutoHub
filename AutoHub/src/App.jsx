@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import "./server";
-import Cars from "./pages/Cars";
+import Cars from "./pages/Cars/Cars";
 import Layout from "./components/Layout";
-import CarsDetail from "./components/CarDetail";
+import CarsDetail from "./pages/Cars/CarDetail";
 import Dashboard from "./pages/Host/Dashboard";
 import Income from "./pages/Host/Income";
 import Reviews from "./pages/Host/Reviews";
@@ -16,7 +16,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route  index element={<Home />}/>
+            <Route index element={<Home />}/>
             <Route path="about" element={<About />}/>
             <Route path="cars" element={<Cars />}/>
             <Route path="cars/:id" element={<CarsDetail />}></Route>
