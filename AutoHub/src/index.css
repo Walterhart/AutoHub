@@ -97,10 +97,19 @@ header .active-link {
   text-decoration: underline;
   color: var(--secondary);
 }
+.capitalize{
+  text-transform: capitalize;
+}
 
 /*Cars page*/
+
+.car-list-filter-buttons > a {
+  margin-right: 0.9375em;
+}
+
 .car-list-container {
-  padding-inline: 23px
+  padding-inline: 23px;
+  padding : 1em
 }
 
 .car-list {
@@ -133,7 +142,7 @@ header .active-link {
   font-weight: 500;
   border: none;
   border-radius: 5px;
-  background-color: var(--secondary);
+  background-color: var(--primary);
   color:  var(--white);
   transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -141,9 +150,6 @@ header .active-link {
 
 .car-brand.selected {
   color: floralwhite;
-}
-.car-brand:hover {
-  color: var(--primary);
 }
 
 .car-brand:focus {
