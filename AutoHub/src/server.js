@@ -8,10 +8,11 @@ createServer({
   seeds(server) {
     server.create("car", {
         id: "1",
+        hostId: "1",
         brand: "Toyota",
         price: 25000,
         description:
-          "The Toyota Camry is a mid-size sedan known for its reliability and fuel efficiency. It offers a comfortable ride and is equipped with advanced safety features.",
+          "The Toyota Camry is a mid-size sedan known for its reliability and fuel efficiency. It offers a comfortable ride and is equipped with adcarced safety features.",
         model: "Camry",
         imageUrl:
           "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2670&q=80",
@@ -20,6 +21,7 @@ createServer({
       
     server.create("car", {
         id: "2",
+        hostId: "2",
         brand: "Ford",
         price: 40000,
         description:
@@ -32,6 +34,7 @@ createServer({
  
     server.create("car", {
         id: "3",
+        hostId: "3",
         brand: "Tesla",
         price: 50000,
         description:
@@ -54,5 +57,14 @@ createServer({
       const id = request.params.id;
       return schema.cars.find(id);
     });
+
+    this.get("/host/cars", (schema, request) => {
+      return schema.cars.where({ hostId: "1" })
+  })
+
+  this.get("/host/cars/:id", (schema, request) => {
+      const id = request.params.id
+      return schema.cars.findBy({ id, hostId: "1" })
+  })
   },
 });
