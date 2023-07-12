@@ -1,29 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import { getCars } from "../../api";
 
 export default function Cars() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [cars, setCars] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const brandFilter = searchParams.get("brand");
 
   useEffect(() => {
-    fetch("/api/cars")
-      .then((res) => res.json())
-      .then((data) => setCars(data.cars));
+    async function loadCars() {
+      setLoading(true);
+      try {
+        const data = await getCars();
+        setCars(data);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadCars();
   }, []);
 
-  const displayCars = brandFilter
+  const displayedCars = brandFilter
     ? cars.filter((car) => car.brand === brandFilter)
     : cars;
 
-  const carElements = displayCars.map((car) => (
+  const carElements = displayedCars.map((car) => (
     <div key={car.id} className="car-tile capitalize">
-      <Link to={car.id}  
-      state={{ 
-                    search: `?${searchParams.toString()}`, 
-                    brand: brandFilter 
-                }}>
+      <Link
+        to={car.id}
+        state={{
+          search: `?${searchParams.toString()}`,
+          brand: brandFilter,
+        }}
+      >
         <img src={car.imageUrl} />
         <div className="car-info">
           <h3>{car.model}</h3>
@@ -43,6 +58,14 @@ export default function Cars() {
       }
       return prevParams;
     });
+  }
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (error) {
+    return <h1>There was an error: {error.message}</h1>;
   }
 
   return (

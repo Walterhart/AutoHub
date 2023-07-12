@@ -1,4 +1,4 @@
-import { createServer, Model } from "miragejs";
+import { createServer, Model, Response  } from "miragejs";
 
 createServer({
   models: {
@@ -45,26 +45,30 @@ createServer({
         type: "electric car",
       });
 },
+routes() {
+  this.namespace = "api"
+  this.logging = false
+  this.timing = 2000
 
-  routes() {
-    this.namespace = "api";
+  this.get("/cars", (schema, request) => {
+      return new Response(400, {}, {error: "Error fetching data"})
+      // return schema.cars.all()
+  })
 
-    this.get("/cars", (schema, request) => {
-      return schema.cars.all();
-    });
+  this.get("/cars/:id", (schema, request) => {
+      const id = request.params.id
+      return schema.cars.find(id)
+  })
 
-    this.get("/cars/:id", (schema, request) => {
-      const id = request.params.id;
-      return schema.cars.find(id);
-    });
-
-    this.get("/host/cars", (schema, request) => {
+  this.get("/host/cars", (schema, request) => {
+      
       return schema.cars.where({ hostId: "1" })
   })
 
   this.get("/host/cars/:id", (schema, request) => {
+     
       const id = request.params.id
       return schema.cars.findBy({ id, hostId: "1" })
   })
-  },
-});
+}
+})
