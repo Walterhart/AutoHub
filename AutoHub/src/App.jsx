@@ -1,8 +1,8 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import "./server";
-import Cars from "./pages/Cars/Cars";
+import Cars, { loader as carsLoader } from "./pages/Cars/Cars";
 import Layout from "./components/Layout";
 import CarsDetail from "./pages/Cars/CarDetail";
 import Dashboard from "./pages/Host/Dashboard";
@@ -15,17 +15,15 @@ import HostCarInfo from "./pages/Host/HostCarInfo";
 import HostCarPricing from "./pages/Host/HostCarPricing";
 import HostCarImages from "./pages/Host/HostCarImages";
 import Error404 from "./pages/Error/Error404";
+import Error from "./pages/Error/Error";
 
-function App() {
-  return (
-    <>
-      <BrowserRouter>
-        <Routes>
+const router = createBrowserRouter(createRoutesFromElements(
+
           <Route path="/" element={<Layout />}>
             
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
-            <Route path="cars" element={<Cars />} />
+            <Route path="cars" element={<Cars />} loader={carsLoader}  errorElement={<Error />} />
             <Route path="cars/:id" element={<CarsDetail />}></Route>
 
             <Route path="host" element={<HostLayout />}>
@@ -41,8 +39,12 @@ function App() {
             </Route>
             <Route path="*" element={<Error404/>} />
           </Route>
-        </Routes>
-      </BrowserRouter>
+
+))
+function App() {
+  return (
+    <>
+      <RouterProvider router={router}/>
     </>
   );
 }

@@ -1,30 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useLoaderData, useSearchParams } from "react-router-dom";
 import { getCars } from "../../api";
+
+export function loader() {
+    return  getCars()
+}
 
 export default function Cars() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [cars, setCars] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  const cars =useLoaderData()
   const brandFilter = searchParams.get("brand");
-
-  useEffect(() => {
-    async function loadCars() {
-      setLoading(true);
-      try {
-        const data = await getCars();
-        setCars(data);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadCars();
-  }, []);
 
   const displayedCars = brandFilter
     ? cars.filter((car) => car.brand === brandFilter)
@@ -58,10 +44,6 @@ export default function Cars() {
       }
       return prevParams;
     });
-  }
-
-  if (loading) {
-    return <h1>Loading...</h1>;
   }
 
   if (error) {
