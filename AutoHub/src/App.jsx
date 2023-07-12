@@ -14,6 +14,7 @@ import HostCarDetail from "./pages/Host/HostCarDetail";
 import HostCarInfo from "./pages/Host/HostCarInfo";
 import HostCarPricing from "./pages/Host/HostCarPricing";
 import HostCarImages from "./pages/Host/HostCarImages";
+import Error404 from "./pages/Error/Error404";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
+            
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="cars" element={<Cars />} />
@@ -37,6 +39,7 @@ function App() {
                 <Route path="images" element={<HostCarImages/>}/>
               </Route>
             </Route>
+            <Route path="*" element={<Error404/>} />
           </Route>
         </Routes>
       </BrowserRouter>
