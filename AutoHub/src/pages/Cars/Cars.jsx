@@ -19,7 +19,11 @@ export default function Cars() {
 
   const carElements = displayCars.map((car) => (
     <div key={car.id} className="car-tile capitalize">
-      <Link to={car.id}>
+      <Link to={car.id}  
+      state={{ 
+                    search: `?${searchParams.toString()}`, 
+                    brand: brandFilter 
+                }}>
         <img src={car.imageUrl} />
         <div className="car-info">
           <h3>{car.model}</h3>
