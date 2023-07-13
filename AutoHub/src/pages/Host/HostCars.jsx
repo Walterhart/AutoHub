@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import { getHostCars } from "../../api";
+
+
+export function loader(){
+  return getHostCars()
+}
 
 function HostCars() {
-  const [cars, setCars] = useState([]);
-
-  useEffect(() => {
-    fetch("/api/host/cars")
-      .then((res) => res.json())
-      .then((data) => setCars(data.cars));
-  }, []);
+  const cars = useLoaderData()
 
   const hostCarsElement = cars.map((car) => (
     <Link
@@ -32,11 +32,8 @@ function HostCars() {
     <section>
       <h1 className="host-cars-title">Your listed cars</h1>
       <div className="host-cars-list">
-        {cars.length > 0 ? (
+
           <section>{hostCarsElement}</section>
-        ) : (
-          <h2>Loading...</h2>
-        )}
       </div>
     </section>
   );

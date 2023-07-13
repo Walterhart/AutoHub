@@ -1,25 +1,26 @@
 import React, { useEffect } from "react";
-import { useParams , Link, useLocation} from "react-router-dom";
+import { Link, useLocation, useLoaderData } from "react-router-dom";
+import { getCars } from "../../api";
+
+export function loader({ params }) {
+  return getCars(params.id);
+}
 
 export default function CarDetail() {
-  const params = useParams();
-  const [car, setCar] = React.useState(null);
-  const location = useLocation() 
+  const location = useLocation();
+  const car = useLoaderData();
 
-  useEffect(() => {
-    fetch(`/api/cars/${params.id}`)
-      .then((res) => res.json())
-      .then((data) => setCar(data.cars));
-  }, [params.id]);
-
-  const search =  location.state?.search || ""
-  const brand = location.state?.brand || "all"
+  const search = location.state?.search || "";
+  const brand = location.state?.brand || "all";
   return (
     <div className="car-detail-container">
       {car ? (
         <div className="car-detail">
           <Link to={`..${search}`} relative="path" className="back-button">
-            &larr; <span>Back to <span className="capitalize">{brand}</span> vehicles</span>
+            &larr;{" "}
+            <span>
+              Back to <span className="capitalize">{brand}</span> vehicles
+            </span>
           </Link>
           <img src={car.imageUrl} />
           <i className={`car-brand ${car.brand} selected`}>{car.brand}</i>
