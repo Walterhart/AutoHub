@@ -1,7 +1,9 @@
 import { Link, Outlet, NavLink, useLoaderData } from "react-router-dom";
 import { getHostCars } from "../../api";
+import { requireAuth } from "../../utils.js/AuthRequired";
 
-export function loader({ params }) {
+export async function loader({ params }) {
+  await requireAuth()
   return getHostCars(params.id);
 }
 

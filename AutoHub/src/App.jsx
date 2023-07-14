@@ -24,6 +24,7 @@ import HostCarImages from "./pages/Host/HostCarImages";
 import Error404 from "./pages/Error/Error404";
 import Error from "./pages/Error/Error";
 import Login from "./pages/Login";
+import { requireAuth } from "./utils.js/AuthRequired";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -43,23 +44,17 @@ const router = createBrowserRouter(
         <Route
           index
           element={<Dashboard />}
-          loader={async () => {
-            return null;
-          }}
+          loader={async () => await requireAuth()}
         />
         <Route
           path="income"
           element={<Income />}
-          loader={async () => {
-            return null;
-          }}
+          loader={async () => await requireAuth()}
         />
         <Route
           path="reviews"
           element={<Reviews />}
-          loader={async () => {
-            return null;
-          }}
+          loader={async () => await requireAuth()}
         />
         <Route path="cars" element={<HostCars />} loader={hostCarsLoader} />
         <Route
@@ -70,23 +65,17 @@ const router = createBrowserRouter(
           <Route
             index
             element={<HostCarInfo />}
-            loader={async () => {
-              return null;
-            }}
+            loader={async () => await requireAuth()}
           />
           <Route
             path="pricing"
             element={<HostCarPricing />}
-            loader={async () => {
-              return null;
-            }}
+            loader={async () => await requireAuth()}
           />
           <Route
             path="images"
             element={<HostCarImages />}
-            loader={async () => {
-              return null;
-            }}
+            loader={async () => await requireAuth()}
           />
         </Route>
       </Route>

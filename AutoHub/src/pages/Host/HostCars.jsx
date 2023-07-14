@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+
 import { Link, useLoaderData } from "react-router-dom";
 import { getHostCars } from "../../api";
+import { requireAuth } from "../../utils.js/AuthRequired";
 
 
-export function loader(){
+export async function loader(){
+  await requireAuth()
   return getHostCars()
 }
 
