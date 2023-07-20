@@ -56,7 +56,8 @@ header a {
   padding: 5px 20px;
 }
 
-header a:hover {
+
+header a:hover , .transparent-button .sign-out-icon:hover {
   color: var(--secondary);
   text-decoration: underline;
 }
@@ -72,6 +73,17 @@ footer {
   align-items: center;
   margin-top: auto;
   font-weight: 500;
+}
+
+.transparent-button {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.sign-out-icon{
+  color: whitesmoke;
 }
 
 
@@ -437,4 +449,7 @@ i[class*='car-brand-'] {
   margin-top: 22px;
   color: white;
   font-family: "Inter", sans-serif;
+}
+.danger {
+  color: #931e1e;
 }

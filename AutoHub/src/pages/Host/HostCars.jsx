@@ -4,8 +4,8 @@ import { getHostCars } from "../../api";
 import { requireAuth } from "../../utils.js/AuthRequired";
 
 
-export async function loader(){
-  await requireAuth()
+export async function loader({request}){
+  await requireAuth(request)
   return getHostCars()
 }
 
