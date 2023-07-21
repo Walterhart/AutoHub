@@ -1,39 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLoaderData, useSearchParams } from "react-router-dom";
+import React, { Suspense, useEffect, useState } from "react";
+import {
+  Await,
+  Link,
+  defer,
+  useLoaderData,
+  useSearchParams,
+} from "react-router-dom";
 import { getCars } from "../../api";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 export function loader() {
-    return  getCars()
+  return defer({ cars: getCars() });
 }
 
 export default function Cars() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [error, setError] = useState(null);
-  const cars =useLoaderData()
+  const dataPromise = useLoaderData();
+  console.log(dataPromise)
   const brandFilter = searchParams.get("brand");
-
-  const displayedCars = brandFilter
-    ? cars.filter((car) => car.brand === brandFilter)
-    : cars;
-
-  const carElements = displayedCars.map((car) => (
-    <div key={car.id} className="car-tile capitalize">
-      <Link
-        to={car.id}
-        state={{
-          search: `?${searchParams.toString()}`,
-          brand: brandFilter,
-        }}
-      >
-        <img src={car.imageUrl} />
-        <div className="car-info">
-          <h3>{car.model}</h3>
-          <p>${car.price}</p>
-        </div>
-        <i className={`car-brand ${car.brand} selected `}>{car.brand}</i>
-      </Link>
-    </div>
-  ));
 
   function handleFilterChange(key, value) {
     setSearchParams((prevParams) => {
@@ -49,45 +34,78 @@ export default function Cars() {
   if (error) {
     return <h1>There was an error: {error.message}</h1>;
   }
+function renderCarElements (cars) {
+    
+    const displayedCars = brandFilter
+      ? cars.filter((car) => car.brand === brandFilter)
+      : cars;
 
+    const carElements = displayedCars.map((car) => (
+      <div key={car.id} className="car-tile capitalize">
+        <Link
+          to={car.id}
+          state={{
+            search: `?${searchParams.toString()}`,
+            brand: brandFilter,
+          }}
+        >
+          <img src={car.imageUrl} />
+          <div className="car-info">
+            <h3>{car.model}</h3>
+            <p>${car.price}</p>
+          </div>
+          <i className={`car-brand ${car.brand} selected `}>
+            {car.brand}
+          </i>
+        </Link>
+      </div>
+    )) 
+    return(
+     <>        
+    <div className="car-list-filter-buttons">
+    <button
+      onClick={() => handleFilterChange("brand", "ford")}
+      className={`car-brand Ford ${
+        brandFilter === "ford" ? "selected" : ""
+      }`}
+    >
+      Ford
+    </button>
+    <button
+      onClick={() => handleFilterChange("brand", "tesla")}
+      className={`car-brand Tesla ${
+        brandFilter === "tesla" ? "selected" : ""
+      }`}
+    >
+      Tesla
+    </button>
+    <button
+      onClick={() => handleFilterChange("brand", "toyota")}
+      className={`car-brand Toyota ${
+        brandFilter === "toyota" ? "selected" : ""
+      }`}
+    >
+      Toyota
+    </button>
+    {brandFilter ? (
+      <button
+        onClick={() => setSearchParams({})}
+        className="car-brand clear-filters"
+      >
+        Clear filter
+      </button>
+    ) : null}
+  </div>
+  <div className="car-list">{carElements}</div></>)
+  }
   return (
     <div className="car-list-container">
       <h1>Explore our cars options</h1>
-      <div className="car-list-filter-buttons">
-        <button
-          onClick={() => handleFilterChange("brand", "ford")}
-          className={`car-brand Ford ${
-            brandFilter === "ford" ? "selected" : ""
-          }`}
-        >
-          Ford
-        </button>
-        <button
-          onClick={() => handleFilterChange("brand", "tesla")}
-          className={`car-brand Tesla ${
-            brandFilter === "tesla" ? "selected" : ""
-          }`}
-        >
-          Tesla
-        </button>
-        <button
-          onClick={() => handleFilterChange("brand", "toyota")}
-          className={`car-brand Toyota ${
-            brandFilter === "toyota" ? "selected" : ""
-          }`}
-        >
-          Toyota
-        </button>
-        {brandFilter ? (
-          <button
-            onClick={() => setSearchParams({})}
-            className="car-brand clear-filters"
-          >
-            Clear filter
-          </button>
-        ) : null}
-      </div>
-      <div className="car-list">{carElements}</div>
+      <Suspense fallback={<LoadingSpinner/>}>
+      <Await resolve={dataPromise.cars}>
+        {renderCarElements}
+      </Await>
+      </Suspense>
     </div>
   );
 }
