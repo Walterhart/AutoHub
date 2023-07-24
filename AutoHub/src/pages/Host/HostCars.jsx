@@ -1,42 +1,53 @@
 
-import { Link, useLoaderData } from "react-router-dom";
+import { Await, Link, defer, useLoaderData } from "react-router-dom";
 import { getHostCars } from "../../api";
 import { requireAuth } from "../../utils.js/AuthRequired";
+import { Suspense } from "react";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 
 export async function loader({request}){
   await requireAuth(request)
-  return getHostCars()
+  return defer({cars: getHostCars()}) 
 }
 
 function HostCars() {
-  const cars = useLoaderData()
+  const dataPromise = useLoaderData()
 
-  const hostCarsElement = cars.map((car) => (
-    <Link
-      to={`/host/cars/${car.id}`}
-      key={car.id}
-      className="host-car-link-wrapper"
-    >
-      <div className="host-car-single" key={car.id}>
-        <img src={car.imageUrl} alt={`Photo of ${car.model}`} />
-        <div className="host-car-info">
-          <h3>
-            {car.brand} {car.model}
-          </h3>
-          <p>${car.price}</p>
+  const renderCars = (cars) =>{
+    const hostCarsElement = cars.map((car) => (
+      <Link
+        to={`/host/cars/${car.id}`}
+        key={car.id}
+        className="host-car-link-wrapper"
+      >
+        <div className="host-car-single" key={car.id}>
+          <img src={car.imageUrl} alt={`Photo of ${car.model}`} />
+          <div className="host-car-info">
+            <h3>
+              {car.brand} {car.model}
+            </h3>
+            <p>${car.price}</p>
+          </div>
         </div>
-      </div>
-    </Link>
-  ));
-  
+      </Link>
+    ));
+
+    return(
+    <div className="host-cars-list">
+    <section>{hostCarsElement}</section>
+    </div>
+    )
+  }
+ 
   return (
     <section>
       <h1 className="host-cars-title">Your listed cars</h1>
-      <div className="host-cars-list">
-
-          <section>{hostCarsElement}</section>
-      </div>
+      <Suspense fallback={<LoadingSpinner/>}>
+      <Await  resolve={dataPromise.cars}>
+       {renderCars}
+      </Await>
+      </Suspense>
     </section>
   );
 }
