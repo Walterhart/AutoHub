@@ -13,7 +13,7 @@ createServer({
         brand: "toyota",
         price: 25000,
         description:
-          "The Toyota Camry is a mid-size sedan known for its reliability and fuel efficiency. It offers a comfortable ride and is equipped with adczarced safety features.",
+          "The Toyota Camry is a mid-size sedan known for its reliability and fuel efficiency. It offers a comfortable ride and is equipped with advance safety features.",
         model: "camry",
         imageUrl:
           "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2670&q=80",
