@@ -38,7 +38,7 @@ const router = createBrowserRouter(
         loader={carsLoader}
         errorElement={<Error />}
       />
-      <Route path="cars/:id" element={<CarDetail />} loader={carDetailLoader} />
+      <Route path="cars/:id" element={<CarDetail />} loader={carDetailLoader}   errorElement={<Error />}/>
 
       <Route path="host" element={<HostLayout />}>
         <Route
@@ -56,11 +56,12 @@ const router = createBrowserRouter(
           element={<Reviews />}
           loader={async ({request}) => await requireAuth(request)}
         />
-        <Route path="cars" element={<HostCars />} loader={hostCarsLoader} />
+        <Route path="cars" element={<HostCars />} loader={hostCarsLoader}  errorElement={<Error />}/>
         <Route
           path="cars/:id"
           element={<HostCarDetail />}
           loader={hostCarDetailLoader}
+          errorElement={<Error />}
         >
           <Route
             index

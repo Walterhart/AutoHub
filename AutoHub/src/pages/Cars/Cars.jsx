@@ -15,7 +15,6 @@ export function loader() {
 
 export default function Cars() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [error, setError] = useState(null);
   const dataPromise = useLoaderData();
   console.log(dataPromise)
   const brandFilter = searchParams.get("brand");
@@ -31,9 +30,6 @@ export default function Cars() {
     });
   }
 
-  if (error) {
-    return <h1>There was an error: {error.message}</h1>;
-  }
 function renderCarElements (cars) {
     
     const displayedCars = brandFilter
