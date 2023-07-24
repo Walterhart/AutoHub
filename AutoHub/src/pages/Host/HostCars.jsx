@@ -25,7 +25,7 @@ function HostCars() {
           <img src={car.imageUrl} alt={`Photo of ${car.model}`} />
           <div className="host-car-info">
             <h3>
-              {car.brand} {car.model}
+              <span className="capitalize">{car.brand}</span> <span className="capitalize">{car.model}</span>
             </h3>
             <p>${car.price}</p>
           </div>
