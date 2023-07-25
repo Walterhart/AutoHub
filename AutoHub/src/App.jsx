@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import "./server";
 import Cars, { loader as carsLoader } from "./pages/Cars/Cars";
 import Layout from "./components/Layout";
 import CarDetail, { loader as carDetailLoader } from "./pages/Cars/CarDetail";

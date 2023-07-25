@@ -1,10 +1,10 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense} from "react";
 import { Link, useLocation, useLoaderData, Await, defer } from "react-router-dom";
-import { getCars } from "../../api";
+import { getCar } from "../../api";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
 export function loader({ params }) {
-  return defer({car: getCars(params.id)}) ;
+  return defer({car: getCar(params.id)}) ;
 }
 
 export default function CarDetail() {
@@ -36,7 +36,7 @@ export default function CarDetail() {
       </div>
     );
   }
-  
+
   return (
     <Suspense fallback={<LoadingSpinner/>}>
     <Await resolve={dataPromise.car}>

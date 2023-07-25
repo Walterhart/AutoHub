@@ -1,16 +1,14 @@
 import { Link, Outlet, NavLink, useLoaderData, defer, Await } from "react-router-dom";
-import { getHostCars } from "../../api";
+import { getCar, getHostCars } from "../../api";
 import { requireAuth } from "../../utils.js/AuthRequired";
 import { Suspense } from "react";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
 export async function loader({ params, request }) {
   await requireAuth({request})
-  return defer({car: getHostCars(params.id) }) ;
+  return defer({car: getCar(params.id) }) ;
 }
-
 function HostCarDetail() {
-  console.log(useLoaderData());
   const dataPromise = useLoaderData();
 
   const renderCar = (car) =>{
