@@ -127,7 +127,7 @@ header .active-link {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  color: white;
+  color: lightgrey;
   padding: 45px 23px;
 }
 
@@ -135,7 +135,7 @@ header .active-link {
   display: inline-block;
   text-align: center;
   text-decoration: none;
-  background-color: var(--primary);
+  background-color: #89623f;
   border: none;
   margin-top: 27px;
   padding: 0.75rem 1.375rem;
@@ -166,7 +166,6 @@ header .active-link {
 
 
 /* ABOUT PAGE */
-
 
 .about-hero-image {
   width: 100%;
@@ -266,15 +265,15 @@ header .active-link {
   outline: none;
 }
 
-.car-brand.Ford:hover, .car-brand.Ford.selected {
-  background-color: #54e167;
+.car-brand.ford:hover, .car-brand.ford.selected {
+  background-color: #89623f;
 }
 
-.car-brand.Toyota:hover, .car-brand.Toyota.selected {
+.car-brand.toyota:hover, .car-brand.toyota.selected {
   background-color: #115E59;
 }
 
-.car-brand.telsa:hover, .car-brand.Tesla.selected {
+.car-brand.tesla:hover, .car-brand.tesla.selected {
   background-color: #161616;
 }
 

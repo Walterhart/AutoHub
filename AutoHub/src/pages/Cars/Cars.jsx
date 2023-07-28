@@ -16,7 +16,6 @@ export function loader() {
 export default function Cars() {
   const [searchParams, setSearchParams] = useSearchParams();
   const dataPromise = useLoaderData();
-  console.log(dataPromise)
   const brandFilter = searchParams.get("brand");
 
   function handleFilterChange(key, value) {
@@ -61,7 +60,7 @@ function renderCarElements (cars) {
     <div className="car-list-filter-buttons">
     <button
       onClick={() => handleFilterChange("brand", "ford")}
-      className={`car-brand Ford ${
+      className={`car-brand ford ${
         brandFilter === "ford" ? "selected" : ""
       }`}
     >
@@ -69,7 +68,7 @@ function renderCarElements (cars) {
     </button>
     <button
       onClick={() => handleFilterChange("brand", "tesla")}
-      className={`car-brand Tesla ${
+      className={`car-brand tesla ${
         brandFilter === "tesla" ? "selected" : ""
       }`}
     >
@@ -77,7 +76,7 @@ function renderCarElements (cars) {
     </button>
     <button
       onClick={() => handleFilterChange("brand", "toyota")}
-      className={`car-brand Toyota ${
+      className={`car-brand toyota ${
         brandFilter === "toyota" ? "selected" : ""
       }`}
     >
