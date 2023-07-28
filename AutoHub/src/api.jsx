@@ -1,8 +1,19 @@
-
 import { initializeApp } from "firebase/app";
-import { collection,  doc,  getDoc,  getDocs, getFirestore, query, where } from "firebase/firestore/lite"
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore/lite";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -14,39 +25,36 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app)
-const carsCollectionRef =collection(db,"cars")
+const db = getFirestore(app);
+const carsCollectionRef = collection(db, "cars");
 
-export async function getCars(){
-  const querySnapshot = await getDocs(carsCollectionRef)
-  const dataArr = querySnapshot.docs.map(doc =>({
+export async function getCars() {
+  const querySnapshot = await getDocs(carsCollectionRef);
+  const dataArr = querySnapshot.docs.map((doc) => ({
     ...doc.data(),
-    id: doc.id
-  }))
-  return dataArr
+    id: doc.id,
+  }));
+  return dataArr;
 }
 
 export async function getCar(id) {
-  const docRef = doc(db, "cars", id)
-  const carSnapshot = await getDoc(docRef)
+  const docRef = doc(db, "cars", id);
+  const carSnapshot = await getDoc(docRef);
   return {
-      ...carSnapshot.data(),
-      id: carSnapshot.id
-  }
+    ...carSnapshot.data(),
+    id: carSnapshot.id,
+  };
 }
 
 export async function getHostCars() {
-  const q = query(carsCollectionRef, where("hostId", "==", 3))
-  const querySnapshot = await getDocs(q)
-  const dataArr = querySnapshot.docs.map(doc => ({
-      ...doc.data(),
-      id: doc.id
-  }))
-  
-  console.log("Data Array:", dataArr);
-  return dataArr
+  const q = query(carsCollectionRef, where("hostId", "==", 3));
+  const querySnapshot = await getDocs(q);
+  const dataArr = querySnapshot.docs.map((doc) => ({
+    ...doc.data(),
+    id: doc.id,
+  }));
+  return dataArr;
 }
-
 
 export async function loginUser(creds) {
   const auth = getAuth();
@@ -56,16 +64,14 @@ export async function loginUser(creds) {
       creds.email,
       creds.password
     );
-    
-    console.log("logged-in",user);
-    return user
+
+    return user;
   } catch (error) {
     console.log(error.message);
+    throw new Error("Login failed. Please check your email and password.");
   }
+}
+
+const logOut = async () => {
+  await signOut(auth);
 };
-  // Signed in 
-    //Password@123
-    //user@123.com
-  const logout = async () => {
-    await signOut(auth);
-  };

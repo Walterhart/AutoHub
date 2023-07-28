@@ -1,15 +1,26 @@
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { MdOutlineAccountCircle, MdOutlineLogout } from "react-icons/md";
 
 export default function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    localStorage.getItem("loggedin") === "true"
-  );
+  const [isLogged, setIsLogged] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    const userDataString = localStorage.getItem("user");
+    const userData = JSON.parse(userDataString);
+
+    if (userData && userData.user && userData.user.uid) {
+      setIsLogged(true);
+    } else {
+      setIsLogged(false);
+    }
+  }, []);
 
   function signOut() {
-    localStorage.removeItem("loggedin");
-    setIsLoggedIn(false);
+    localStorage.removeItem("user");
+    setIsLogged(false);
+    navigate(location.pathname);
   }
 
   return (
@@ -38,7 +49,7 @@ export default function Header() {
           Host
         </NavLink>
 
-        {isLoggedIn ? (
+        {isLogged ? (
           <button onClick={signOut} className="transparent-button">
             <MdOutlineLogout className="sign-out-icon" />
           </button>
