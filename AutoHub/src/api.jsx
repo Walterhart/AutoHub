@@ -1,6 +1,7 @@
 
 import { initializeApp } from "firebase/app";
 import { collection,  doc,  getDoc,  getDocs, getFirestore, query, where } from "firebase/firestore/lite"
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 
 const firebaseConfig = {
@@ -48,19 +49,23 @@ export async function getHostCars() {
 
 
 export async function loginUser(creds) {
-  const res = await fetch("/api/login", {
-    method: "post",
-    body: JSON.stringify(creds),
-  });
-  const data = await res.json();
-
-  if (!res.ok) {
-    throw {
-      message: data.message,
-      statusText: res.statusText,
-      status: res.status,
-    };
+  const auth = getAuth();
+  try {
+    const user = await signInWithEmailAndPassword(
+      auth,
+      creds.email,
+      creds.password
+    );
+    
+    console.log("logged-in",user);
+    return user
+  } catch (error) {
+    console.log(error.message);
   }
-
-  return data;
-}
+};
+  // Signed in 
+    //Password@123
+    //user@123.com
+  const logout = async () => {
+    await signOut(auth);
+  };
