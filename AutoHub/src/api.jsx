@@ -46,13 +46,16 @@ export async function getCar(id) {
   };
 }
 
-export async function getHostCars() {
-  const q = query(carsCollectionRef, where("hostId", "==", 3));
+export async function getHostCars(id) {
+
+  const q = query(carsCollectionRef, where("hostId", "==", "9AKWNWs1p1PBkaUYPWNVYZwMD233"));
   const querySnapshot = await getDocs(q);
+  console.log(querySnapshot)
   const dataArr = querySnapshot.docs.map((doc) => ({
     ...doc.data(),
     id: doc.id,
   }));
+  console.log(dataArr)
   return dataArr;
 }
 
@@ -75,3 +78,14 @@ export async function loginUser(creds) {
 const logOut = async () => {
   await signOut(auth);
 };
+
+
+export async function  getHostIncome(userId) {
+  const docRef = doc(db, "users", userId, "income", "year-2023");
+
+  const userSnapshot = await getDoc(docRef);
+  return {
+    ...userSnapshot.data(),
+    id: userSnapshot.id,
+  };
+}

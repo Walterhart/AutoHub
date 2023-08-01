@@ -7,12 +7,15 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 
 
 export async function loader({request}){
+  const user = localStorage.getItem("user")
+  const userData = JSON.parse(user);
   await requireAuth(request)
-  return defer({cars: getHostCars()}) 
+  return defer({cars: getHostCars(userData.user.uid)}) 
 }
 
 function HostCars() {
   const dataPromise = useLoaderData()
+  console.log(dataPromise)
 
   const renderCars = (cars) =>{
     const hostCarsElement = cars.map((car) => (

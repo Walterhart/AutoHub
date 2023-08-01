@@ -27,7 +27,6 @@ export async function action({ request }) {
   try {
     const data = await loginUser({ email, password });
     localStorage.setItem("user", JSON.stringify(data));
-    console.log(data)
     return redirect(pathname);
 
   } catch (err) {

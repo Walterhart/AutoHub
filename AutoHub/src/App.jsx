@@ -10,7 +10,7 @@ import Cars, { loader as carsLoader } from "./pages/Cars/Cars";
 import Layout from "./components/Layout";
 import CarDetail, { loader as carDetailLoader } from "./pages/Cars/CarDetail";
 import Dashboard from "./pages/Host/Dashboard";
-import Income from "./pages/Host/Income";
+import Income, { loader as incomeLoader } from "./pages/Host/Income";
 import Reviews from "./pages/Host/Reviews";
 import HostLayout from "./components/HostLayout";
 import HostCars, { loader as hostCarsLoader } from "./pages/Host/HostCars";
@@ -48,7 +48,7 @@ const router = createBrowserRouter(
         <Route
           path="income"
           element={<Income />}
-          loader={async ({request}) => await requireAuth(request)}
+          loader={incomeLoader}
         />
         <Route
           path="reviews"
