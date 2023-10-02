@@ -48,7 +48,7 @@ export async function getCar(id) {
 
 export async function getHostCars(id) {
 
-  const q = query(carsCollectionRef, where("hostId", "==", "9AKWNWs1p1PBkaUYPWNVYZwMD233"));
+  const q = query(carsCollectionRef, where("hostId", "==", id));
   const querySnapshot = await getDocs(q);
   console.log(querySnapshot)
   const dataArr = querySnapshot.docs.map((doc) => ({
@@ -82,7 +82,6 @@ const logOut = async () => {
 
 export async function  getHostIncome(userId) {
   const docRef = doc(db, "users", userId, "income", "year-2023");
-
   const userSnapshot = await getDoc(docRef);
   return {
     ...userSnapshot.data(),
