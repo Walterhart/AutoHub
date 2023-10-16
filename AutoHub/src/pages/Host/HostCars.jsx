@@ -1,18 +1,21 @@
 
 import { Await, Link, defer, useLoaderData } from "react-router-dom";
 import { getHostCars } from "../../api";
-import { requireAuth } from "../../utils.js/AuthRequired";
+import { requireAuth } from "../../utils/AuthRequired";
 import { Suspense } from "react";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
 
 export async function loader({request}){
+  const user = localStorage.getItem("user")
+  const userData = JSON.parse(user);
   await requireAuth(request)
-  return defer({cars: getHostCars()}) 
+  return defer({cars: getHostCars(userData.user.uid)}) 
 }
 
 function HostCars() {
   const dataPromise = useLoaderData()
+  console.log(dataPromise)
 
   const renderCars = (cars) =>{
     const hostCarsElement = cars.map((car) => (

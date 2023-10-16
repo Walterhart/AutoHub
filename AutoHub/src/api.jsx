@@ -1,7 +1,19 @@
-
 import { initializeApp } from "firebase/app";
-import { collection,  doc,  getDoc,  getDocs, getFirestore, query, where } from "firebase/firestore/lite"
-
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore/lite";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -13,54 +25,66 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app)
-const carsCollectionRef =collection(db,"cars")
+const db = getFirestore(app);
+const carsCollectionRef = collection(db, "cars");
 
-export async function getCars(){
-  const querySnapshot = await getDocs(carsCollectionRef)
-  const dataArr = querySnapshot.docs.map(doc =>({
+export async function getCars() {
+  const querySnapshot = await getDocs(carsCollectionRef);
+  const dataArr = querySnapshot.docs.map((doc) => ({
     ...doc.data(),
-    id: doc.id
-  }))
-  return dataArr
+    id: doc.id,
+  }));
+  return dataArr;
 }
 
 export async function getCar(id) {
-  const docRef = doc(db, "cars", id)
-  const carSnapshot = await getDoc(docRef)
+  const docRef = doc(db, "cars", id);
+  const carSnapshot = await getDoc(docRef);
   return {
-      ...carSnapshot.data(),
-      id: carSnapshot.id
-  }
+    ...carSnapshot.data(),
+    id: carSnapshot.id,
+  };
 }
 
-export async function getHostCars() {
-  const q = query(carsCollectionRef, where("hostId", "==", 3))
-  const querySnapshot = await getDocs(q)
-  const dataArr = querySnapshot.docs.map(doc => ({
-      ...doc.data(),
-      id: doc.id
-  }))
-  
-  console.log("Data Array:", dataArr);
-  return dataArr
-}
+export async function getHostCars(id) {
 
+  const q = query(carsCollectionRef, where("hostId", "==", id));
+  const querySnapshot = await getDocs(q);
+  console.log(querySnapshot)
+  const dataArr = querySnapshot.docs.map((doc) => ({
+    ...doc.data(),
+    id: doc.id,
+  }));
+  console.log(dataArr)
+  return dataArr;
+}
 
 export async function loginUser(creds) {
-  const res = await fetch("/api/login", {
-    method: "post",
-    body: JSON.stringify(creds),
-  });
-  const data = await res.json();
+  const auth = getAuth();
+  try {
+    const user = await signInWithEmailAndPassword(
+      auth,
+      creds.email,
+      creds.password
+    );
 
-  if (!res.ok) {
-    throw {
-      message: data.message,
-      statusText: res.statusText,
-      status: res.status,
-    };
+    return user;
+  } catch (error) {
+    console.log(error.message);
+    throw new Error("Login failed. Please check your email and password.");
   }
+}
 
-  return data;
+const logOut = async () => {
+  await signOut(auth);
+};
+
+
+export async function  getHostIncome(userId) {
+  const docRef = doc(db, "users", userId, "income", "year-2023");
+  const userSnapshot = await getDoc(docRef);
+  return {
+    ...userSnapshot.data(),
+    id: userSnapshot.id,
+  };
 }

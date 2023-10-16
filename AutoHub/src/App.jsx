@@ -10,10 +10,11 @@ import Cars, { loader as carsLoader } from "./pages/Cars/Cars";
 import Layout from "./components/Layout";
 import CarDetail, { loader as carDetailLoader } from "./pages/Cars/CarDetail";
 import Dashboard from "./pages/Host/Dashboard";
-import Income from "./pages/Host/Income";
+import Income, { loader as incomeLoader } from "./pages/Host/Income";
 import Reviews from "./pages/Host/Reviews";
 import HostLayout from "./components/HostLayout";
 import HostCars, { loader as hostCarsLoader } from "./pages/Host/HostCars";
+import DashBoard, { loader as hostDashBoardLoader } from "./pages/Host/Dashboard";
 import HostCarDetail, {
   loader as hostCarDetailLoader,
 } from "./pages/Host/HostCarDetail";
@@ -23,7 +24,7 @@ import HostCarImages from "./pages/Host/HostCarImages";
 import Error404 from "./pages/Error/Error404";
 import Error from "./pages/Error/Error";
 import Login, { action as loginAction, loader as loginLoader} from "./pages/Login";
-import { requireAuth } from "./utils.js/AuthRequired";
+import { requireAuth } from "./utils/AuthRequired";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -43,12 +44,12 @@ const router = createBrowserRouter(
         <Route
           index
           element={<Dashboard />}
-          loader={async ({request}) => await requireAuth(request)}
+          loader={hostDashBoardLoader}
         />
         <Route
           path="income"
           element={<Income />}
-          loader={async ({request}) => await requireAuth(request)}
+          loader={incomeLoader}
         />
         <Route
           path="reviews"

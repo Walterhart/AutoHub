@@ -9,24 +9,26 @@ import {
 import { loginUser } from "../api";
 
 export function loader({ request }) {
+  if(localStorage.getItem("user"))
+  {
+
+    return redirect("/host")
+  }
   return new URL(request.url).searchParams.get("message");
 }
 
 export async function action({ request }) {
   const pathname =
     new URL(request.url).searchParams.get("redirectTo") || "/host";
-  console.log(pathname);
   const formData = await request.formData();
   const email = formData.get("email");
   const password = formData.get("password");
+
   try {
     const data = await loginUser({ email, password });
-    localStorage.setItem("loggedin", JSON.stringify(true));
-    const response = redirect(pathname);
-    // work around for mirage js issue with not adhere to fetch specifications for react router 6.4
-    // capture response
-    response.body = true;
-    return response;
+    localStorage.setItem("user", JSON.stringify(data));
+    return redirect(pathname);
+
   } catch (err) {
     return err.message;
   }
