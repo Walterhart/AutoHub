@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { getHostIncome } from "../../api";
-import { requireAuth } from "../../utils.js/AuthRequired";
+import { requireAuth } from "../../utils/AuthRequired";
 import { Await, defer, useLoaderData } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import image from "../../assets/income-graph.png";

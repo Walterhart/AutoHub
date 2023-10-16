@@ -1,6 +1,6 @@
 import { Link, Outlet, NavLink, useLoaderData, defer, Await } from "react-router-dom";
 import { getCar, getHostCars } from "../../api";
-import { requireAuth } from "../../utils.js/AuthRequired";
+import { requireAuth } from "../../utils/AuthRequired";
 import { Suspense } from "react";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
