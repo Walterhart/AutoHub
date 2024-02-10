@@ -40,9 +40,11 @@ header {
   background-color: var(--primary);
 }
 
-header .site-logo, header a{
+header .site-logo,
+header a {
   color: var(--white);
 }
+
 header .site-logo {
   margin-right: auto;
   text-transform: uppercase;
@@ -57,7 +59,9 @@ header a {
 }
 
 
-header a:hover , .transparent-button .sign-out-icon:hover {
+header a:hover,
+header a:focus,
+.transparent-button .sign-out-icon:hover {
   color: var(--secondary);
   text-decoration: underline;
 }
@@ -82,7 +86,7 @@ footer {
   cursor: pointer;
 }
 
-.sign-out-icon{
+.sign-out-icon {
   color: whitesmoke;
 }
 
@@ -100,7 +104,8 @@ footer {
   transition: transform 0.1s ease-in-out;
 }
 
-.link-button:hover, .link-button:focus {
+.link-button:hover,
+.link-button:focus {
   transform: translate(1px, 1px);
 }
 
@@ -109,7 +114,8 @@ header .active-link {
   text-decoration: underline;
   color: var(--secondary);
 }
-.capitalize{
+
+.capitalize {
   text-transform: capitalize;
 }
 
@@ -129,7 +135,7 @@ header .active-link {
   color: rgb(214, 213, 213);
 }
 
-.home-content{
+.home-content {
   height: 100%;
   width: 90%;
   max-width: 1800px;
@@ -159,23 +165,28 @@ header .active-link {
   transition: transform 0.1s ease-in-out;
   max-width: 250px;
 }
-.home-container p{
+
+.home-container p {
   line-height: 1.4;
 }
-.home-content h1, .home-container p{
+
+.home-content h1,
+.home-container p {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
-.home-content a:hover, .home-content a:focus {
+
+.home-content a:hover,
+.home-content a:focus {
   transform: translate(1px, 1px);
 }
 
 
 /* ABOUT PAGE */
-.flex-container{
+.flex-container {
   display: flex;
 }
 
-.about-page-container{
+.about-page-container {
   width: 90%;
   margin: 2em auto auto;
   flex-direction: column;
@@ -184,8 +195,8 @@ header .active-link {
 .about-hero-image {
   width: 100%;
   height: auto;
-  max-height: 500px; 
-  margin-bottom: 1em; 
+  max-height: 500px;
+  margin-bottom: 1em;
   object-fit: cover;
   order: -1;
 }
@@ -212,7 +223,7 @@ header .active-link {
   padding-bottom: 2em;
   border-radius: 5px;
   width: 100%;
-  
+
 }
 
 .about-page-cta h2 {
@@ -229,13 +240,13 @@ header .active-link {
 
 /*Cars page*/
 
-.car-list-filter-buttons > a {
+.car-list-filter-buttons>a {
   margin-right: 0.9375em;
 }
 
 .car-list-container {
   padding-inline: 23px;
-  padding : 1em
+  padding: 1em
 }
 
 .car-list {
@@ -248,7 +259,7 @@ header .active-link {
 
 .car-tile a {
   color: #161616;
-  text-decoration: none;    
+  text-decoration: none;
 }
 
 .car-tile img {
@@ -269,7 +280,7 @@ header .active-link {
   border: none;
   border-radius: 5px;
   background-color: var(--primary);
-  color:  var(--white);
+  color: var(--white);
   transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -282,15 +293,21 @@ header .active-link {
   outline: none;
 }
 
-.car-brand.ford:hover, .car-brand.ford.selected {
+.car-brand.ford:hover,
+.car-brand.ford:hover,
+.car-brand.ford.selected {
   background-color: #89623f;
 }
 
-.car-brand.toyota:hover, .car-brand.toyota.selected {
+.car-brand.toyota:hover,
+.car-brand.toyota:focus,
+.car-brand.toyota.selected {
   background-color: #115E59;
 }
 
-.car-brand.tesla:hover, .car-brand.tesla.selected {
+.car-brand.tesla:hover,
+.car-brand.tesla:focus,
+.car-brand.tesla.selected {
   background-color: #161616;
 }
 
@@ -341,7 +358,7 @@ i[class*='car-brand-'] {
   margin-bottom: 10px;
 }
 
-.car-detail > i {
+.car-detail>i {
   align-self: flex-start;
 }
 
@@ -373,7 +390,9 @@ i[class*='car-brand-'] {
   padding: 0.3125em 1.25em;
 }
 
-.host-nav a:hover, .host-nav .active-link{
+.host-nav a:hover,
+.host-nav a:focus,
+.host-nav .active-link {
   color: var(--primary);
   text-decoration: underline;
   font-weight: 600;
@@ -402,7 +421,7 @@ i[class*='car-brand-'] {
   padding-left: 24px;
 }
 
-.host-car-single > img {
+.host-car-single>img {
   height: 70px;
   border-radius: 5px;
   margin-right: 17px;
@@ -417,6 +436,7 @@ i[class*='car-brand-'] {
 .host-car-info p {
   margin-block: 10px;
 }
+
 .host-car-detail-layout-container {
   background-color: white;
   box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.1);
@@ -429,20 +449,20 @@ i[class*='car-brand-'] {
   align-items: center;
 }
 
-.host-car-detail > img {
+.host-car-detail>img {
   height: 160px;
   border-radius: 5px;
   margin-right: 20px;
 }
 
-.host-car-detail-info-text > h3 {
+.host-car-detail-info-text>h3 {
   margin-top: 24px;
   margin-bottom: 5px;
   font-size: 26px;
   font-weight: 700;
 }
 
-.host-car-detail-info-text > h4 {
+.host-car-detail-info-text>h4 {
   font-size: 20px;
   margin-block: 0;
 }
@@ -454,7 +474,8 @@ i[class*='car-brand-'] {
   margin-top: 60px;
   margin-left: 26px;
 }
-.back-button:hover{
+
+.back-button:hover {
   text-decoration: underline;
 }
 
@@ -478,19 +499,22 @@ i[class*='car-brand-'] {
   margin-left: -15px;
 }
 
-.host-car-detail-nav a:hover, .host-car-detail-nav a.active-link {
+.host-car-detail-nav a:hover,
+.host-car-detail-nav a:focus,
+.host-car-detail-nav a.active-link {
   color: #161616;
   text-decoration: underline;
   font-weight: 700;
 }
 
 
-.host-car-detail-info > h4 {
+.host-car-detail-info>h4 {
   font-weight: 700;
   font-size: 14px;
   line-height: 21px;
 }
-.host-car-detail-info > h4 > span {
+
+.host-car-detail-info>h4>span {
   font-weight: 500;
 }
 
@@ -503,22 +527,22 @@ i[class*='car-brand-'] {
   align-items: center;
 }
 
-.host-dashboard-earnings > .info > h1 {
+.host-dashboard-earnings>.info>h1 {
   font-size: 36px;
   color: #161616;
   margin: 0;
 }
 
-.host-dashboard-earnings > .info > p {
+.host-dashboard-earnings>.info>p {
   color: #4d4d4d;
 }
 
-.host-dashboard-earnings > .info > p > span {
+.host-dashboard-earnings>.info>p>span {
   text-decoration: underline;
   font-weight: bold;
 }
 
-.host-dashboard-earnings > .info > h2 {
+.host-dashboard-earnings>.info>h2 {
   margin: 0;
   font-size: 38px;
   color: #161616;
@@ -532,7 +556,7 @@ i[class*='car-brand-'] {
   align-items: center;
 }
 
-.host-dashboard-reviews > h2 {
+.host-dashboard-reviews>h2 {
   margin: 0;
 }
 
@@ -549,7 +573,7 @@ i[class*='car-brand-'] {
   margin-right: auto;
 }
 
-.host-dashboard-reviews p > span {
+.host-dashboard-reviews p>span {
   font-weight: bold;
   color: #161616;
 }
@@ -558,7 +582,7 @@ i[class*='car-brand-'] {
   padding: 38px 26px;
 }
 
-.host-dashboard-cars > .top {
+.host-dashboard-cars>.top {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -574,64 +598,64 @@ i[class*='car-brand-'] {
 }
 
 .host-reviews {
-    padding-inline: 26px;
-    color: #161616;
+  padding-inline: 26px;
+  color: #161616;
 }
 
 .host-reviews .top-text {
-    display: flex;
-    align-items: center;
-    margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
 }
 
-.host-reviews .top-text > h2 {
-    font-weight: 700;
-    font-size: 32px;
-    margin: 0;
-    margin-right: 20px;
+.host-reviews .top-text>h2 {
+  font-weight: 700;
+  font-size: 32px;
+  margin: 0;
+  margin-right: 20px;
 }
 
-.host-reviews .top-text > p {
-    margin: 0;
-    color: #4d4d4d;
+.host-reviews .top-text>p {
+  margin: 0;
+  color: #4d4d4d;
 }
 
-.host-reviews .top-text > p span {
-    text-decoration: underline;
-    font-weight: bold;
+.host-reviews .top-text>p span {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
-.host-reviews > img {
-    margin-bottom: 36px;
+.host-reviews>img {
+  margin-bottom: 36px;
 }
 
 .host-reviews .review {
-    margin-block: 25px;
+  margin-block: 25px;
 }
 
 .host-reviews .review .info {
-    display: flex;
+  display: flex;
 }
 
 .host-reviews .review .name {
-    color: #161616;
-    margin-right: 10px;
-    font-weight: 600;
+  color: #161616;
+  margin-right: 10px;
+  font-weight: 600;
 }
 
 .host-reviews .review .date {
-    color: #8c8c8c;
+  color: #8c8c8c;
 }
 
 .host-reviews hr {
-    background-color: #c7c7c7;
-    height: 1px;
-    border: 0;
+  background-color: #c7c7c7;
+  height: 1px;
+  border: 0;
 }
 
 .host-reviews .review-star {
-    color: var(--primary);
-    margin-right: 5px;
+  color: var(--primary);
+  margin-right: 5px;
 }
 
 .host-car-detail-image {
@@ -645,16 +669,16 @@ i[class*='car-brand-'] {
   color: #161616;
 }
 
-.host-income > p {
+.host-income>p {
   color: #4d4d4d;
 }
 
-.host-income > p span {
+.host-income>p span {
   text-decoration: underline;
   font-weight: bold;
 }
 
-.host-income > h2 {
+.host-income>h2 {
   font-size: 38px;
   color: #161616;
   font-weight: 900;
@@ -665,16 +689,16 @@ img.graph {
   max-width: 500px;
 }
 
-.host-income .info-header > p {
+.host-income .info-header>p {
   color: #4d4d4d;
 }
 
-.host-income .info-header > p span {
+.host-income .info-header>p span {
   text-decoration: underline;
   font-weight: bold;
 }
 
-.host-income .info-header > h3 {
+.host-income .info-header>h3 {
   font-weight: 700;
   font-size: 24px;
   margin-top: 60px;
@@ -689,13 +713,14 @@ img.graph {
   padding: 35px 29px;
   border-radius: 6px;
 }
-.host-income .transaction > h3 {
+
+.host-income .transaction>h3 {
   font-size: 36px;
   font-weight: 600;
   margin: 0;
 }
 
-.host-income .transaction > p {
+.host-income .transaction>p {
   font-weight: 500;
   font-size: 20px;
   color: #4d4d4d;
@@ -710,7 +735,7 @@ img.graph {
   width: 100%;
   background-color: var(--primary);
   color: white;
-  
+
 }
 
 .login-container {
@@ -724,10 +749,10 @@ img.graph {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 500px;    
+  max-width: 500px;
 }
 
-.login-form > input {
+.login-form>input {
   border: 1px solid rgba(209, 213, 219);
   height: 40px;
   text-indent: 10px;
@@ -736,20 +761,20 @@ img.graph {
   font-weight: 400;
 }
 
-.login-form > input:focus {
+.login-form>input:focus {
   outline: none;
 }
 
-.login-form > input:first-of-type {
+.login-form>input:first-of-type {
   border-radius: 6px 6px 0px 0px;
 }
 
-.login-form > input:last-of-type {
+.login-form>input:last-of-type {
   border-radius: 0px 0px 6px 6px;
   border-top: none;
 }
 
-.login-form > button {
+.login-form>button {
   background-color: var(--primary);
   border: none;
   border-radius: 6px;
@@ -758,6 +783,7 @@ img.graph {
   color: white;
   font-family: "Inter", sans-serif;
 }
+
 .danger {
   color: #931e1e;
 }
@@ -772,7 +798,7 @@ img.graph {
 
 .loading-spinner-circle {
   border: 4px solid rgba(0, 0, 0, 0.1);
-  border-left: 4px solid var(--primary); 
+  border-left: 4px solid var(--primary);
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -783,6 +809,7 @@ img.graph {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
