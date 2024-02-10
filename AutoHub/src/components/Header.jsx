@@ -42,17 +42,19 @@ export default function Header() {
         >
           Cars
         </NavLink>
-        <NavLink
-          to="/host"
-          className={({ isActive }) => (isActive ? "active-link" : null)}
-        >
-          Host
-        </NavLink>
 
         {isLogged ? (
-          <button onClick={signOut} className="transparent-button">
-            <MdOutlineLogout className="sign-out-icon" />
-          </button>
+          <>
+            <NavLink
+              to="/host"
+              className={({ isActive }) => (isActive ? "active-link" : null)}
+            >
+              Host
+            </NavLink>
+            <button onClick={signOut} className="transparent-button">
+              <MdOutlineLogout className="sign-out-icon" />
+            </button>
+          </>
         ) : (
           <Link to="/login">
             <MdOutlineAccountCircle />

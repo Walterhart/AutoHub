@@ -68,4 +68,4 @@ Here are some images from project.
 ## Note
 
 1. Income currently is hardcode and review page chart. Will make it dynamic when I have time.
-2. Login in as user use walterhart1@gmail.com with password Happy@1 to login into test account.
+2. Login in as user use walterwhart1@gmail.com with password Happy@1 to login into test account.
