@@ -58,6 +58,10 @@ header a {
   padding: 5px 20px;
 }
 
+nav{
+  display: flex;
+  margin-right: 1em;
+}
 
 header a:hover,
 header a:focus,
