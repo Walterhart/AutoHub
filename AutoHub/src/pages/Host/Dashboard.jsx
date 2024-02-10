@@ -3,7 +3,7 @@ import { getHostCars } from "../../api";
 import { requireAuth } from "../../utils/AuthRequired";
 import { Suspense } from "react";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { BsStarFill } from "react-icons/bs"
+import { BsStarFill } from "react-icons/bs";
 
 export async function loader({ request }) {
   const user = localStorage.getItem("user");

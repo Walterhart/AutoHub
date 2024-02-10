@@ -1,12 +1,10 @@
-import React from 'react'
-import { useOutletContext } from 'react-router-dom'
+import React from "react";
+import { useOutletContext } from "react-router-dom";
 
 function HostCarPricing() {
-  const {car} = useOutletContext()
+  const { car } = useOutletContext();
 
-  return (
-    <h3 className="host-car-price">${car.price}</h3>
-  )
+  return <h3 className="host-car-price">${car.price}</h3>;
 }
 
-export default HostCarPricing
+export default HostCarPricing;

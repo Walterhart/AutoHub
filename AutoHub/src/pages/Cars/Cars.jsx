@@ -29,8 +29,7 @@ export default function Cars() {
     });
   }
 
-function renderCarElements (cars) {
-    
+  function renderCarElements(cars) {
     const displayedCars = brandFilter
       ? cars.filter((car) => car.brand === brandFilter)
       : cars;
@@ -49,57 +48,55 @@ function renderCarElements (cars) {
             <h3>{car.model}</h3>
             <p>${car.price}</p>
           </div>
-          <i className={`car-brand ${car.brand} selected `}>
-            {car.brand}
-          </i>
+          <i className={`car-brand ${car.brand} selected `}>{car.brand}</i>
         </Link>
       </div>
-    )) 
-    return(
-     <>        
-    <div className="car-list-filter-buttons">
-    <button
-      onClick={() => handleFilterChange("brand", "ford")}
-      className={`car-brand ford ${
-        brandFilter === "ford" ? "selected" : ""
-      }`}
-    >
-      Ford
-    </button>
-    <button
-      onClick={() => handleFilterChange("brand", "tesla")}
-      className={`car-brand tesla ${
-        brandFilter === "tesla" ? "selected" : ""
-      }`}
-    >
-      Tesla
-    </button>
-    <button
-      onClick={() => handleFilterChange("brand", "toyota")}
-      className={`car-brand toyota ${
-        brandFilter === "toyota" ? "selected" : ""
-      }`}
-    >
-      Toyota
-    </button>
-    {brandFilter ? (
-      <button
-        onClick={() => setSearchParams({})}
-        className="car-brand clear-filters"
-      >
-        Clear filter
-      </button>
-    ) : null}
-  </div>
-  <div className="car-list">{carElements}</div></>)
+    ));
+    return (
+      <>
+        <div className="car-list-filter-buttons">
+          <button
+            onClick={() => handleFilterChange("brand", "ford")}
+            className={`car-brand ford ${
+              brandFilter === "ford" ? "selected" : ""
+            }`}
+          >
+            Ford
+          </button>
+          <button
+            onClick={() => handleFilterChange("brand", "tesla")}
+            className={`car-brand tesla ${
+              brandFilter === "tesla" ? "selected" : ""
+            }`}
+          >
+            Tesla
+          </button>
+          <button
+            onClick={() => handleFilterChange("brand", "toyota")}
+            className={`car-brand toyota ${
+              brandFilter === "toyota" ? "selected" : ""
+            }`}
+          >
+            Toyota
+          </button>
+          {brandFilter ? (
+            <button
+              onClick={() => setSearchParams({})}
+              className="car-brand clear-filters"
+            >
+              Clear filter
+            </button>
+          ) : null}
+        </div>
+        <div className="car-list">{carElements}</div>
+      </>
+    );
   }
   return (
     <div className="car-list-container">
       <h1>Explore our cars options</h1>
-      <Suspense fallback={<LoadingSpinner/>}>
-      <Await resolve={dataPromise.cars}>
-        {renderCarElements}
-      </Await>
+      <Suspense fallback={<LoadingSpinner />}>
+        <Await resolve={dataPromise.cars}>{renderCarElements}</Await>
       </Suspense>
     </div>
   );

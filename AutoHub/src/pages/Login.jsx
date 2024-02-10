@@ -9,10 +9,8 @@ import {
 import { loginUser } from "../api";
 
 export function loader({ request }) {
-  if(localStorage.getItem("user"))
-  {
-
-    return redirect("/host")
+  if (localStorage.getItem("user")) {
+    return redirect("/host");
   }
   return new URL(request.url).searchParams.get("message");
 }
@@ -28,7 +26,6 @@ export async function action({ request }) {
     const data = await loginUser({ email, password });
     localStorage.setItem("user", JSON.stringify(data));
     return redirect(pathname);
-
   } catch (err) {
     return err.message;
   }

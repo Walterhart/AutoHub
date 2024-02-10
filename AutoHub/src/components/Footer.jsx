@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function Footer() {
-  return (
-    <footer>&#169; 2023 AUTOHUB</footer>
-  )
+  return <footer>&#169; 2023 AUTOHUB</footer>;
 }
 
-export default Footer
+export default Footer;
