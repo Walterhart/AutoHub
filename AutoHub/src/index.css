@@ -100,7 +100,7 @@ footer {
   transition: transform 0.1s ease-in-out;
 }
 
-.link-button:hover {
+.link-button:hover, .link-button:focus {
   transform: translate(1px, 1px);
 }
 
@@ -118,49 +118,54 @@ header .active-link {
 .home-container {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.46), rgba(0, 0, 0, 0.46)),
+  justify-content: center;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.46), rgba(0, 0, 0, 0.5)),
     url("./assets/car-road.jpg") no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  color: lightgrey;
-  padding: 45px 23px;
+  color: rgb(214, 213, 213);
 }
 
-.home-container a {
-  display: inline-block;
+.home-content{
+  height: 100%;
+  width: 90%;
+  max-width: 1800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  align-items: center;
+}
+
+.home-content h1 {
+  font-weight: 700;
+  font-size: 2.25rem;
+}
+
+.home-content a {
+  display: inline-block;
   text-decoration: none;
   background-color: #89623f;
   border: none;
   margin-top: 27px;
-  padding: 0.75rem 1.375rem;
-  color: white;
+  padding: 0.75em 1.375em;
+  color: rgb(232, 228, 228);
   font-weight: 700;
   border-radius: 5px;
   cursor: pointer;
   transition: transform 0.1s ease-in-out;
-
   max-width: 250px;
 }
-
-
-.home-container h1 {
-  font-weight: 700;
-  font-size: 2.25rem;
-  line-height: 42px;
+.home-container p{
+  line-height: 1.4;
 }
-
-.home-container p {
-  line-height: 24px;
+.home-content h1, .home-container p{
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
-
-
-.home-container a:hover {
+.home-content a:hover, .home-content a:focus {
   transform: translate(1px, 1px);
 }
 
